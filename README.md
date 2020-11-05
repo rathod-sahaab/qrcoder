@@ -1,6 +1,8 @@
 QR code generator - React project using gatsby
 
-## 🚀 Quick start
+![QR Coder demo](./docs/qrcoder.gif)
+
+## Quick start
 
 1.  **Start developing.**
 

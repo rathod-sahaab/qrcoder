@@ -47,7 +47,7 @@ export default class IndexPage extends React.Component {
           <p>
             Generate QR Codes just type your string and download the generated
             image, <br />
-            by right clickicg on it and then 'Save Image As...'
+            by right clicking on it and then 'Save Image As...'
             <br />
             <br />
           </p>
@@ -58,8 +58,21 @@ export default class IndexPage extends React.Component {
             onChange={this.refreshQR}
             style={{
               width: "100%",
+              paddingBottom: "1em",
             }}
           />
+          <Tooltip placement="bottom" title="Error correction level">
+            <ToggleButtonGroup
+              value={this.state.qrLevel}
+              exclusive
+              onChange={this.onQrLevelChange}
+            >
+              <ToggleButton value="L"> L </ToggleButton>
+              <ToggleButton value="M"> M </ToggleButton>
+              <ToggleButton value="Q"> Q </ToggleButton>
+              <ToggleButton value="H"> H </ToggleButton>
+            </ToggleButtonGroup>
+          </Tooltip>
         </div>
         <div
           className="partition"
@@ -70,21 +83,10 @@ export default class IndexPage extends React.Component {
             flexDirection: "column",
           }}
         >
-          <Tooltip placement="top" title="Error correction level">
-            <ToggleButtonGroup
-              value={this.state.qrLevel}
-              exclusive
-              onChange={this.onQrLevelChange}
-              style={{ paddingBottom: "1em" }}
-            >
-              <ToggleButton value="L"> L </ToggleButton>
-              <ToggleButton value="M"> M </ToggleButton>
-              <ToggleButton value="Q"> Q </ToggleButton>
-              <ToggleButton value="H"> H </ToggleButton>
-            </ToggleButtonGroup>
-          </Tooltip>
-
-          <div className="qrbox" style={{ borderColor: this.state.qrFgColor }}>
+          <div
+            className="qrbox"
+            style={{ borderColor: this.state.qrFgColor, margin: "1em 0" }}
+          >
             <QRCode
               value={this.state.qrText}
               fgColor={this.state.qrFgColor}
@@ -94,6 +96,7 @@ export default class IndexPage extends React.Component {
             />
           </div>
           <TwitterPicker
+            triangle="hide"
             color={this.state.qrFgColor}
             colors={[
               "#FF6900",
